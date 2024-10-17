@@ -14,6 +14,21 @@
     <div id="swagger-ui"></div>
     <script src="dist/swagger-ui-bundle.js" charset="UTF-8"> </script>
     <script src="dist/swagger-ui-standalone-preset.js" charset="UTF-8"> </script>
-    <script src="dist/swagger-initializer.js" charset="UTF-8"> </script>
+    
+    <!-- This script points to your YAML file on GitHub Pages -->
+    <script>
+      window.onload = function() {
+        const ui = SwaggerUIBundle({
+          url: "https://santoshoruganty.github.io/API_Doc/swagger.yaml",  // Point to the GitHub Pages YAML file
+          dom_id: '#swagger-ui',
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIStandalonePreset
+          ],
+          layout: "StandaloneLayout"
+        })
+        window.ui = ui
+      }
+    </script>
   </body>
 </html>
