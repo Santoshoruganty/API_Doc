@@ -6,20 +6,18 @@ info:
     - Visit [Our Website!](https://www.truelightenergy.com/contact)
     - Look at the [Documentation](https://docs.google.com/document/d/1sUxOvtiX70JKQs_H3cn5lCzjl9Vffp0iaYSlCAviLRY/edit?tab=t.0#heading=h.e8axk1f0f6oo)
     - Thank you!
-  
-  version: 1.0.11
+  version: "1.0.11"
   termsOfService: http://swagger.io/terms/
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  
+
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 
 servers:
   - url: http://127.0.0.1:5000
-
 
 components:
   securitySchemes:
