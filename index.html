@@ -21,6 +21,11 @@
         const ui = SwaggerUIBundle({
           url: "https://santoshoruganty.github.io/API_Doc/swagger.yaml",
           dom_id: '#swagger-ui',
+          deepLinking: true,
+          syntaxHighlight: {
+            activated: true,
+            theme: "obsidian"
+          },
           presets: [
             SwaggerUIBundle.presets.apis,
             SwaggerUIStandalonePreset
