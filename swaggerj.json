@@ -1,0 +1,440 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TRUEPrice™ API UserGuide",
+    "description": "Contact [TLE technical support](mailto:techsupport@truelightenergy.com) for more information.\n- Visit [Our Website!](https://www.truelightenergy.com/contact)\n- Look at the [Documentation](https://docs.google.com/document/d/1sUxOvtiX70JKQs_H3cn5lCzjl9Vffp0iaYSlCAviLRY/edit?tab=t.0#heading=h.e8axk1f0f6oo)\n- Thank you!\n",
+    "version": "1.0.11",
+    "termsOfService": "http://swagger.io/terms/",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:5000"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "status_code": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/login": {
+      "get": {
+        "summary": "Logging into the application.",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Email address",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "Password",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful"
+          },
+          "400": {
+            "description": "Incorrect parameters"
+          },
+          "403": {
+            "description": "Login failed"
+          }
+        }
+      }
+    },
+    "/download_data": {
+      "get": {
+        "summary": "Fetch data from application",
+        "tags": [
+          "Users - Downloads"
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "yyyy-mm-dd",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "yyyy-mm-dd",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "operating_day",
+            "in": "query",
+            "description": "Operating day",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "curve_type",
+            "in": "query",
+            "description": "Curve type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "iso",
+            "in": "query",
+            "description": "ISO",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "strip",
+            "in": "query",
+            "description": "Strip",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "history",
+            "in": "query",
+            "description": "COB or all",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "CSV or JSON",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data downloaded successfully"
+          },
+          "400": {
+            "description": "Incorrect parameters provided"
+          },
+          "403": {
+            "description": "Unable to download data"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/generate_garph_view": {
+      "get": {
+        "summary": "Graph view generation",
+        "tags": [
+          "Graph View - graph generation"
+        ],
+        "parameters": [
+          {
+            "name": "data_type",
+            "in": "query",
+            "description": "ptc or headroom",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "control_table",
+            "in": "query",
+            "description": "Control table",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sub_cost_component",
+            "in": "query",
+            "description": "WEST ZONE",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Start date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "End date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Graph generation successful"
+          },
+          "400": {
+            "description": "Unable to generate graph"
+          },
+          "403": {
+            "description": "Something went wrong"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/contactus": {
+      "get": {
+        "summary": "Signup to the application.",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Email address",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "Password",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Signup successful"
+          },
+          "400": {
+            "description": "Incorrect parameters"
+          },
+          "403": {
+            "description": "Signup failed"
+          }
+        }
+      }
+    },
+    "/add_filter": {
+      "get": {
+        "summary": "Handles column filtering",
+        "tags": [
+          "Data - Data Filtering"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "description": "User's Email",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "control_table",
+            "in": "query",
+            "description": "Control Table Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "control_area",
+            "in": "query",
+            "description": "Control Area",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "State",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "load_zone",
+            "in": "query",
+            "description": "Load Zone",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "capacity_zone",
+            "in": "query",
+            "description": "Capacity Zone",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "utility",
+            "in": "query",
+            "description": "Utility",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "strip",
+            "in": "query",
+            "description": "Strip",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cost_group",
+            "in": "query",
+            "description": "Cost Group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cost_component",
+            "in": "query",
+            "description": "Cost Component",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sub_cost_component",
+            "in": "query",
+            "description": "Sub Cost Component",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "description": "Start Range Date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "End Range Date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Add filters successfully"
+          },
+          "400": {
+            "description": "Incorrect parameters provided"
+          },
+          "403": {
+            "description": "Unable to add data filter"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    }
+  }
+}
